@@ -1,22 +1,27 @@
-**Speech commands recognition**
+# Speech commands recognition
+
 The project classifies one word speech commands and compares between different input feature representations and models.
 
-**Dataset**
+## Dataset
+
 Google's "Mini Speech Commands" dataset is used for this project, which contains 8 thousand one second clips of different speakers saying one of the commands: yes, up, stop, right, no, left, go, down. 
 Each class contains a thousand samples at 16kHz. The dataset is split 80%/10%/10% between training, validation and test sets.
 
-**Features**
+## Features
+
 These are the features used to train the models: raw waveform, spectrogram, log-Mel spectrogram, MFCC.
 
-**Models**
-model1: 2D CNN on the spectrogram
-model2: 2D CNN on log-Mel
-model3: 1D CNN on the raw waveform
-model4: Random Forest on MFCC
-model5: 2-layer GRU on MFCC
-model6: CRNN (CNN + BiGRU) on log-Mel
+## Models
 
-**Results**
+- **model1:** 2D CNN on the spectrogram
+- **model2:** 2D CNN on log-Mel
+- **model3:** 1D CNN on the raw waveform
+- **model4:** Random Forest on MFCC
+- **model5:** 2-layer GRU on MFCC
+- **model6:** CRNN (CNN + BiGRU) on log-Mel
+
+## Results
+
 Below is a table with different metrics (accuracy, precision, recall, specificity) evaluated on a test set
 <table>
   <thead>
@@ -47,10 +52,12 @@ Below is a table with different metrics (accuracy, precision, recall, specificit
 From the results it is apparent, that GRU and CRNN models performed the best (GRU MFCC 0.944, CRNN 0.929 accuracy), Random Forest clearly overfits the training set and 1D CNN on raw waveform performed 
 the worst (0.668 accuracy).
 
-**Conclusions**
+## Conclusions
+
 GRU model performs the best because it models frequency changes overtime better than just a regular CNN, which is important for such input as sound.
 Since Random Forest overfits the training set, grid search for optimal hyperparameter selection should be implemented in the future.
 1D CNN on raw waveform performed the worst because it captures noise and doesn't capture all the composing frequencies of a sound.
 
-**To run**
+## To run
+
 You can open the notebook in Google Colab and run it. Change runtime device from CPU to available GPU to run faster. If the notebook is run locally, first install the required dependencies.
